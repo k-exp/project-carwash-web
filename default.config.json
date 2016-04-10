@@ -1,0 +1,46 @@
+{
+  "dev": {
+    "srvPort": 8080,
+    
+    "cliPort": 8686,
+
+    "session": {
+      "secret": "supersecret",
+      "timeout": 1200
+    },
+
+    "redis": {
+      "host": "localhost",
+      "port": 6379
+    },
+
+    "psql": {
+      "username": "username",
+      "password": "password",
+      "host": "localhost",
+      "port": 5432,
+      "initialdb": "dbinitial"
+    } 
+  },
+  "prod": {
+    "port": 8080,
+
+    "session": {
+      "secret": "supersecret",
+      "timeout": 1200
+    },
+
+    "redis": {
+      "host": "localhost",
+      "port": 6379
+    },
+
+    "psql": {
+      "username": "username",
+      "password": "password",
+      "host": "localhost",
+      "port": 5432,
+      "initialdb": "dbinitial"
+    }    
+  }
+}

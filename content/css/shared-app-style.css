@@ -1,0 +1,76 @@
+.tv-frame-body {
+  overflow: hidden;
+}
+
+.tv-frame-main {
+}
+
+.tv-frame {
+  position: absolute;
+}
+
+.component-default {
+  border-bottom: 1px solid #CACACA;
+  border-right: 1px solid #CACACA;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  background-color: #EAE6E6;  
+}
+
+/* SIDE NAV */
+
+.side-nav {
+  position: absolute;
+  z-index: 100;
+}
+
+.side-nav-btn {
+    position: absolute;
+    display: inline-block;
+}
+
+.side-nav-content {
+    position: relative;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: #fff;
+    border: 1px solid;
+}
+
+/* MAIN CONTAINER */
+
+.main-container-left {
+  position: relative;
+  min-height: 1;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+.main-container-left-top-content,
+.main-container-left-bottom-content {
+  overflow-y: scroll;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.main-container-right {
+  position: relative; 
+  min-height: 1;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+.main-container-right-content {
+  overflow-y: scroll; 
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+/* GRID ITEM */
+
+.trader-grid-item {
+  display: inline-block;
+  overflow-y: scroll;
+}
