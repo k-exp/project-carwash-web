@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import common              from 'jsCommon';
 import { APP_RESIZE,
-         SIDENAV_TOGGLE
+         SIDENAV_TOGGLE,
+         CHANGE_VIEW
        } from '../constants/action_types';
 import service from './service';
 
@@ -12,7 +13,12 @@ const initialState = I.Map({
     height: 0,
     width: 0,
     isSideNavCollapsed: true
-  })
+  }),
+
+  /**
+   * SERVICE, CUSTOMER, JOB, STATS
+   */
+  currentViewKey: 'SERVICE'
 });
 
 function app(state = initialState, action) {
@@ -22,6 +28,9 @@ function app(state = initialState, action) {
       return state.updateIn(['uiLayout'], m => m.merge({
         isSideNavCollapsed: !m.get('isSideNavCollapsed')
       }));
+
+    case CHANGE_VIEW:
+      return state.updateIn(['currentViewKey'], m => action.view);
 
     default:
       return state;

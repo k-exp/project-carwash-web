@@ -9,7 +9,12 @@ const Either = common.data.either;
 
 const initialState = I.Map({
   schema: Either.Pending('service schema pending'),
-  data: Either.Pending('service data pending')
+  data: Either.Pending('service data pending'),
+  pageState: I.Map({
+    page: 1,
+    size: 10,
+    count: 0
+  })
 });
 
 export default function (state = initialState, action) {

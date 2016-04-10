@@ -5,7 +5,7 @@ import pgsqlConf from './src/persist/sql/pgsql';
 import EventEmitter from 'events';
 import readln from 'readline-sync';
 
-import customertest from './test/data/customer';
+import datatest from './test/data';
 
 const config = conf.prod;
 const pgsql = pgsqlConf(config);
@@ -136,15 +136,20 @@ function handleJobCreate() {
 
 
 function handleCommandList() {
-  var commands = customertest.slice(0);
+  var modelname = readln.question('model> ');
+
+  const model = models[modelname];
+  const data = datatest[modelname];
+
+  var commands = data.slice(0);
   const loopPop = new EventEmitter();
 
   loopPop.on('next', () => {
     if(commands.length !== 0) {
       const popped = commands.pop();
 
-      models.customer
-        .apply(models.customer.model, popped)
+      model
+        .apply(model.model, popped)
         .then(function (res) {
           var str = JSON.stringify(res, null, 2);
           console.info(str);
@@ -190,7 +195,7 @@ function handleConsoleCommand(cmd) {
       handleRedisSet();
       break;
 
-    case 'customer-batch-test':
+    case 'batch':
       handleCommandList();
       break;
       

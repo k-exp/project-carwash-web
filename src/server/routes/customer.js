@@ -25,7 +25,7 @@ export default function (deps) {
   });
 
   // todo OPTIONS
-  router.get('/opts', middleware.isAuthenticated, (req, res) => {
+  router.options('/', middleware.isAuthenticated, (req, res) => {
     const customer = deps.models.customer;
 
     res.send(JSON.stringify({

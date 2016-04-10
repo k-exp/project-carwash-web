@@ -1,5 +1,16 @@
 var common = require('jsCommon');
 var assert = require('assert');
+var dat = require('./data');
+
+
+describe('test.data.job', function () {
+  it(
+    'should produce 100 test records',
+    function () {
+      assert.equal(dat.job.length, 100);
+    }
+  );
+});
 
 
 describe('crypto: uuid', function () {

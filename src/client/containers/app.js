@@ -12,7 +12,9 @@ class App extends Component {
 
     const {
       uiLayout,
-      sidenavClick
+      currentViewKey,
+      sidenavClick,
+      viewClick
     } = this.props;
 
     const collapseQuantity = uiLayout.isSideNavCollapsed ?
@@ -29,29 +31,28 @@ class App extends Component {
               <ul className="sidebar-nav">
                   <li className="sidebar-brand">
                       <a href="#">
-                          Start Bootstrap
+                          APP
                       </a>
                   </li>
                   <li>
-                      <a href="#">Dashboard</a>
+                      <a href="#"
+                         data-viewkey={'SERVICE'}
+                         onClick={viewClick}>Services</a>
                   </li>
                   <li>
-                      <a href="#">Shortcuts</a>
+                      <a href="#"
+                         data-viewkey={'CUSTOMER'}
+                         onClick={viewClick}>Customers</a>
                   </li>
                   <li>
-                      <a href="#">Overview</a>
+                      <a href="#"
+                         data-viewkey={'JOB'}
+                         onClick={viewClick}>Jobs</a>
                   </li>
                   <li>
-                      <a href="#">Events</a>
-                  </li>
-                  <li>
-                      <a href="#">About</a>
-                  </li>
-                  <li>
-                      <a href="#">Services</a>
-                  </li>
-                  <li>
-                      <a href="#">Contact</a>
+                      <a href="#"
+                         data-viewkey={'STATS'}
+                         onClick={viewClick}>Statistics</a>
                   </li>
               </ul>
           </div>
@@ -64,10 +65,7 @@ class App extends Component {
               <div className="container-fluid">
                   <div className="row">
                       <div className="col-lg-12">
-                          <h1>Simple Sidebar</h1>
-                          <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                          <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                          <a href="#menu-toggle" className="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                          <h1>{currentViewKey}</h1>
                       </div>
                   </div>
               </div>
@@ -84,12 +82,15 @@ App.propTypes = {
     width: PropTypes.number.isRequired,
     isSideNavCollapsed: PropTypes.bool.isRequired
   }).isRequired,
-  sidenavClick: PropTypes.func.isRequired
+  currentViewKey: PropTypes.string.isRequired,
+  sidenavClick: PropTypes.func.isRequired,
+  viewClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    uiLayout: state.app.get('uiLayout').toJS()
+    uiLayout: state.app.get('uiLayout').toJS(),
+    currentViewKey: state.app.get('currentViewKey')
   };
 }
 
@@ -97,6 +98,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     sidenavClick: () => {
       dispatch(appActions.sidenavBtnClick());
+    },
+    viewClick: (e) => {
+      dispatch(appActions.changeView(e.target.dataset.viewkey));
     }
   };
 }
