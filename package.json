@@ -6,7 +6,8 @@
     "webpack": "webpack",
     "webpackServer": "webpack-dev-server --hot --inline --port 8686",
     "watchServer": "nodemon -e js,jsx,json -w srvdev.js -w src/server -i src/client -x node_modules/.bin/babel-node srvdev",
-    "devServers": "./node_modules/.bin/parallelshell 'npm run webpackServer' 'npm run watchServer'"
+    "devServers": "./node_modules/.bin/parallelshell 'npm run webpackServer' 'npm run watchServer'",
+    "test": "mocha test --compilers js:babel-core/register"
   },
   "author": "rogovski",
   "license": "MIT",
@@ -44,6 +45,7 @@
     "babel-preset-react": "^6.1.18",
     "chalk": "^1.1.1",
     "copy-webpack-plugin": "^0.2.0",
+    "mocha": "^2.4.5",
     "nodemon": "^1.8.1",
     "parallelshell": "^2.0.0",
     "react-hot-loader": "^1.3.0",

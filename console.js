@@ -5,6 +5,8 @@ import pgsqlConf from './src/persist/sql/pgsql';
 import EventEmitter from 'events';
 import readln from 'readline-sync';
 
+import customertest from './test/data/customer';
+
 const config = conf.prod;
 const pgsql = pgsqlConf(config);
 const loopE = new EventEmitter();
@@ -132,6 +134,28 @@ function handleJobCreate() {
   });
 }
 
+
+function handleCommandList() {
+  var commands = customertest.slice(0);
+  const loopPop = new EventEmitter();
+
+  loopPop.on('next', () => {
+    if(commands.length !== 0) {
+      const popped = commands.pop();
+
+      models.customer
+        .apply(models.customer.model, popped)
+        .then(function (res) {
+          var str = JSON.stringify(res, null, 2);
+          console.info(str);
+          loopPop.emit('next');          
+        });
+    } 
+  });
+
+  loopPop.emit('next');
+}
+
 function handleConsoleCommand(cmd) {
   switch(cmd) {
     case 'user-create':
@@ -166,6 +190,10 @@ function handleConsoleCommand(cmd) {
       handleRedisSet();
       break;
 
+    case 'customer-batch-test':
+      handleCommandList();
+      break;
+      
     default:
       loopE.emit('next');
       break;
