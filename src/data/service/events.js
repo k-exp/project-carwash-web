@@ -13,7 +13,7 @@ export class SERVICE_CREATE_SUCCEEDED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_CREATE_SUCCEEDED'
+      'eventType', 'SERVICE_CREATE_SUCCEEDED'
     );    
   }
 }
@@ -26,7 +26,7 @@ export class SERVICE_CREATE_FAILED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_CREATE_FAILED'
+      'eventType', 'SERVICE_CREATE_FAILED'
     );    
   }
 }
@@ -39,7 +39,7 @@ export class SERVICE_DELETE_SUCCEEDED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_DELETE_SUCCEEDED'
+      'eventType', 'SERVICE_DELETE_SUCCEEDED'
     );    
   }
 }
@@ -52,7 +52,7 @@ export class SERVICE_DELETE_FAILED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_DELETE_FAILED'
+      'eventType', 'SERVICE_DELETE_FAILED'
     );    
   }
 }
@@ -65,7 +65,7 @@ export class SERVICE_UPDATE_SUCCEEDED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_UPDATE_SUCCEEDED'
+      'eventType', 'SERVICE_UPDATE_SUCCEEDED'
     );    
   }
 }
@@ -78,7 +78,7 @@ export class SERVICE_UPDATE_FAILED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_UPDATE_FAILED'
+      'eventType', 'SERVICE_UPDATE_FAILED'
     );    
   }
 }
@@ -91,7 +91,7 @@ export class SERVICE_READ_SUCCEEDED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_READ_SUCCEEDED'
+      'eventType', 'SERVICE_READ_SUCCEEDED'
     );    
   }
 }
@@ -104,7 +104,7 @@ export class SERVICE_READ_FAILED extends EVENT {
      * command id
      */
     definer.public.readonly(this,
-      'commandType', 'SERVICE_READ_FAILED'
+      'eventType', 'SERVICE_READ_FAILED'
     );    
   }
 }
