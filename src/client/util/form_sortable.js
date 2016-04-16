@@ -1,4 +1,5 @@
 /**
+ * represents a view independant sortable component
  * refactor to uilib package
  */
 
@@ -7,6 +8,8 @@ import common              from 'jsCommon';
 const I = common.util.immutable;
 const Either = common.data.either;
 const _ = common.util.lodash;
+
+const TYPE = 'SORTABLE';
 
 
 /**
@@ -23,6 +26,7 @@ export function defaultState(name, keys) {
   }
   return I.Map({
     name: name,
+    _type: TYPE,
     keys: I.List(keys),
     sorts: I.List()
   });
@@ -45,6 +49,7 @@ export function init(obj) {
   let sorts = obj.sorts || [];
   return I.Map({
     name: obj.name,
+    _type: TYPE,
     keys: I.List(obj.keys),
     sorts: I.List(_.map(sorts, s => I.Map(s)))
   });

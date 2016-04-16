@@ -1,4 +1,5 @@
 /**
+ * represents a view independant pager component
  * refactor to uilib package
  */
 
@@ -7,6 +8,8 @@ import common              from 'jsCommon';
 const I = common.util.immutable;
 const Either = common.data.either;
 const _ = common.util.lodash;
+
+const TYPE = 'PAGE';
 
 
 /**
@@ -19,6 +22,7 @@ export function defaultState(name) {
   }
   return I.Map({
     name: name,
+    _type: TYPE,
     page: 1,
     size: 10,
     count: 0    
@@ -38,6 +42,7 @@ export function init(obj) {
   }
   return I.Map({
     name: obj.name,
+    _type: TYPE,
     page: obj.page || 1,
     size: obj.size || 10,
     count: obj.count || 0
