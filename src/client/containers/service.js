@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect }                     from 'react-redux'
-import * as appActions                 from '../actions/app'
+import * as serviceActions                 from '../actions/service'
 import { bindActionCreators }          from 'redux'
 import common                          from 'jsCommon'
 
@@ -13,31 +13,32 @@ class Service extends Component {
       <div className="view-content">
         <p>ok</p>
       </div>
-    )
+    );
+  }
+
+  componentDidMount() {
+    this.props.getServiceSchema()
   }
 }
 
-App.propTypes = {
+Service.propTypes = {
   schema: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  sidenavClick: PropTypes.func.isRequired,
-  viewClick: PropTypes.func.isRequired
+  getServiceSchema: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    uiLayout: state.app.get('uiLayout').toJS(),
-    currentViewKey: state.app.get('currentViewKey')
+    schema: {},
+    data: {}
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sidenavClick: () => {
-      dispatch(appActions.sidenavBtnClick());
-    },
-    viewClick: (e) => {
-      dispatch(appActions.changeView(e.target.dataset.viewkey));
+    getServiceSchema: () => {
+      dispatch(serviceActions.getServiceSchema());
     }
   };
 }
@@ -45,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(Service)

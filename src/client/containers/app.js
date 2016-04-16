@@ -3,8 +3,19 @@ import { connect }                     from 'react-redux'
 import * as appActions                 from '../actions/app'
 import { bindActionCreators }          from 'redux'
 import common                          from 'jsCommon'
+import Service                         from './service';
 
 const _ = common.util.lodash
+
+function _renderSelectedView(currentViewKey) {
+  switch(currentViewKey) {
+    case 'SERVICE':
+      return (<Service />);
+
+    default:
+      return (<p>not found</p>);
+  }
+}
 
 
 class App extends Component {
@@ -66,6 +77,7 @@ class App extends Component {
                   <div className="row">
                       <div className="col-lg-12">
                           <h1>{currentViewKey}</h1>
+                          {_renderSelectedView(currentViewKey)}
                       </div>
                   </div>
               </div>

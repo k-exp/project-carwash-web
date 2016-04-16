@@ -4,6 +4,9 @@ var c        = require('chalk');
 var dat      = require('./data');
 var page     = require('../src/client/util/form_page');
 var sortable = require('../src/client/util/form_sortable');
+var pending = require('../src/client/util/form_pending');
+var collection = require('../src/client/util/form_collection');
+
 
 const I = common.util.immutable;
 const Either = common.data.either;
@@ -212,4 +215,72 @@ describe('client:util:form_sortable init', () => {
       assert(I.is(cycle3.get('sorts'), I.List()) === true);
     }
   );
+});
+
+/**
+ * FORM PENDING
+ */
+describe('client:util:form_pending defaultState', () => {
+  it(
+    c.yellow('fails when no name is given'),
+    () => {
+      assert.throws(() => pending.defaultState(), Error);
+    }
+  );
+  it(
+    c.yellow('default isPending flag is false'),
+    () => {
+      let defl = pending.defaultState('test');
+      assert.equal(defl.get('isPending'), false);
+    }
+  );
+});
+
+describe('client:util:form_pending init', () => {
+  it(
+    c.yellow('fails when no object arg is given'),
+    () => {
+      assert.throws(() => pending.init(), Error);
+    }
+  );
+  it(
+    c.yellow('fails when no object.name arg is given'),
+    () => {
+      assert.throws(() => pending.init({}), Error);
+    }
+  );
+  it(
+    c.yellow('initializes isPending value when provided as arg'),
+    () => {
+      let defl = pending.init({name: 'test', isPending: true});
+      assert.equal(defl.get('isPending'), true);
+    }
+  );
+});
+
+/**
+ * FORM COLLECTION READONLY
+ */
+describe('client:util:form_collection defaultState', () => {
+  it(
+    c.yellow('fails when no name is given'),
+    () => {
+      assert.throws(() => collection.defaultState(), Error);
+    }
+  );
+  it(
+    c.yellow('fails when no keys are given'),
+    () => {
+      assert.throws(() => collection.defaultState('test'), Error);
+    }
+  );
+  it(
+    c.yellow('it initialized with proper default names'),
+    () => {
+      let defl = collection.defaultState('test', ['k1']);
+      assert.equal(defl.get('pending').get('name'), 'test.pending');
+      assert.equal(defl.get('sortable').get('name'), 'test.sortable');
+      assert.equal(defl.get('page').get('name'), 'test.page');
+    }
+  );  
 });
