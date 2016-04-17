@@ -92,5 +92,5 @@ export function asLimitOffset(state) {
   let page = state.get('page');
   let size = state.get('size');
   let count = state.get('count');
-  throw new Error('not implemented');
+  return { limit: size, offset: (page-1) * size };
 }

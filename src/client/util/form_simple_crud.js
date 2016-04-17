@@ -5,6 +5,7 @@
 
 import common from 'jsCommon';
 import * as schemaStore from './form_schema_store';
+import * as collection from './form_collection';
 
 const I = common.util.immutable;
 const Either = common.data.either;
@@ -24,7 +25,8 @@ export function defaultState(name) {
   return I.Map({
     name: name,
     _type: TYPE,
+    focus: 'collection',
     schemaStore: schemaStore.defaultState(`${name}.schema_store`),
-    collection: null
+    collection: collection.defaultState(`${name}.collection`)
   });
 }
