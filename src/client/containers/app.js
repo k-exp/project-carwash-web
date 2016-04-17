@@ -34,6 +34,9 @@ class App extends Component {
     const wrapperStyle = { paddingLeft: collapseQuantity };
     const sidebarWrapperStyle = { width: collapseQuantity };
     const sidebarButtonStyle = { left: collapseQuantity + 5 };
+    const collapseGraphic = uiLayout.isSideNavCollapsed ?
+      (<i className="fa fa-share" aria-hidden="true"></i>) :
+      (<i className="fa fa-reply" aria-hidden="true"></i>);
 
     return (
       <div id="wrapper" style={wrapperStyle}>
@@ -68,9 +71,10 @@ class App extends Component {
               </ul>
           </div>
 
-          <button className="sidebar-button" 
+          <a className="sidebar-button" 
+                  href="#"
                   style={sidebarButtonStyle}
-                  onClick={sidenavClick}>x</button>
+                  onClick={sidenavClick}>{collapseGraphic}</a>
 
           <div id="page-content-wrapper">
               <div className="container-fluid">
@@ -108,7 +112,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sidenavClick: () => {
+    sidenavClick: (e) => {
+      e.preventDefault();
       dispatch(appActions.sidenavBtnClick());
     },
     viewClick: (e) => {
